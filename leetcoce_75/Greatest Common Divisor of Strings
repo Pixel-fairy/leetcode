@@ -1,0 +1,101 @@
+#Question
+For two strings s and t, we say "t divides s" if and only if s = t + t + t + ... + t + t (i.e., t is concatenated with itself one or more times).
+Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+
+ #my solution
+
+class Solution(object):
+    def gcdOfStrings(self, str1, str2):
+        """
+        :type str1: str
+        :type str2: str
+        :rtype: str
+        """
+        len1, len2 = len(str1), len(str2)
+
+        def isDivisor(l):
+            if len1 % l or len2 % l:
+                return False
+            f1, f2 = len1 // l, len2 // l
+            return str1[:l] * f1 == str1 and str1[:l] * f2 == str2
+
+        for l in range(min(len1, len2), 0, -1):
+            if isDivisor(l):
+                return str1[:l]
+        return ""
+
+
+#optimised solution
+
+class Solution(object):
+    def gcdOfStrings(self, str1, str2):
+        """
+        :type str1: str
+        :type str2: str
+        :rtype: str
+        """
+        # Check if concatenation is possible
+        if str1 + str2 != str2 + str1:
+            return ""
+        
+        # Compute GCD of the lengths using the Euclidean algorithm
+        a, b = len(str1), len(str2)
+        while b:
+            a, b = b, a % b
+        gcd_length = a
+        
+        # The GCD string is the prefix of str1 with length equal to gcd_length
+        return str1[:gcd_length]
+
+
+# code in c
+
+#include <stdio.h>
+#include <string.h>
+
+// Function to find the GCD of two numbers
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Function to find the GCD of strings
+char* gcdOfStrings(char* str1, char* str2) {
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+    
+    // Check if concatenation is possible
+    if (strncmp(str1, str2, len1) != 0 && strncmp(str2, str1, len2) != 0) {
+        return "";
+    }
+    
+    // Find the GCD of the lengths
+    int gcd_length = gcd(len1, len2);
+    
+    // Allocate memory for the result and copy the prefix
+    char* result = (char*)malloc((gcd_length + 1) * sizeof(char));
+    strncpy(result, str1, gcd_length);
+    result[gcd_length] = '\0'; // Null-terminate the string
+    
+    return result;
+}
+
+// Example usage
+int main() {
+    char str1[] = "ABABAB";
+    char str2[] = "ABAB";
+    
+    char* result = gcdOfStrings(str1, str2);
+    printf("GCD of Strings: %s\n", result);
+    
+    // Free the allocated memory
+    free(result);
+    
+    return 0;
+}
+
+##documentation##

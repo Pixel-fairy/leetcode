@@ -68,4 +68,28 @@ class Solution(object):
         # for the end corner case for array like [ 1, 0 , 1 , 0 , 0 ]
         return n<=0
 
+## solution in c
+
+#include <stdbool.h>
+
+bool canPlaceFlowers(int* flowerbed, int flowerbedSize, int n) {
+    int empty = flowerbed[0] ? 0 : 1; // Initialize empty count based on the first position
+    for (int i = 0; i < flowerbedSize; i++) {
+        if (flowerbed[i]) {
+            // Place flowers in the previous empty spaces
+            n -= (empty - 1) / 2;
+            empty = 0; // Reset empty count
+        } else {
+            empty++; // Increment empty count for consecutive zeros
+        }
+    }
+    
+    // Handle the case for the end of the array
+    n -= empty / 2;
+
+    // Return true if all required flowers can be placed
+    return n <= 0;
+}
+
+
 ##documentation##

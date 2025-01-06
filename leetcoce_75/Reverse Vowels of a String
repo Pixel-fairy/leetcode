@@ -1,0 +1,112 @@
+##Question
+Given a string s, reverse only all the vowels in the string and return it.
+The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+
+ Example 1:
+Input: s = "IceCreAm"
+Output: "AceCreIm"
+
+## my soltion/ optimised solution
+
+class Solution:
+    def reverseVowels(self, s):
+        s = list(s)              # we can not directly modify a string so we first convert it to a list
+        vowels = {'a','e','i','o','u','A','E','I','O','U'}
+        left, right = 0, len(s) - 1
+        while left < right:
+            if s[left] not in vowels:
+                left += 1
+            elif s[right] not in vowels:
+                right -= 1
+            else:
+                s[left], s[right] = s[right], s[left]
+                left += 1
+                right -= 1
+        return ''.join(s)
+##
+example 
+      string - "Uma"
+      list- ["U" "m" "a"]
+
+
+## other solution
+
+class Solution(object):
+    def reverseVowels(self, s):
+        vowels = "aeiouAEIOU"
+        vowelList = []
+        letterList = list(s)
+
+        for i in range(len(s)):
+            if s[i] in vowels:
+                vowelList.append(s[i])
+
+        vowelList = vowelList[::-1]
+        vowelIndex = 0
+        for j in range(len(letterList)):
+            if letterList[j] in vowels:
+                letterList[j] = vowelList[vowelIndex]
+                vowelIndex += 1
+
+        return ''.join(letterList) 
+
+## solution in c
+
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+// Function to check if a character is a vowel
+bool isVowel(char c) {
+    char vowels[] = "aeiouAEIOU";
+    for (int i = 0; i < 10; i++) { // Loop through the 10 vowel characters
+        if (c == vowels[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Function to reverse vowels in a string
+void reverseVowels(char *s) {
+    int left = 0, right = strlen(s) - 1;
+    
+    while (left < right) {
+        // Move `left` pointer to the next vowel
+        while (left < right && !isVowel(s[left])) {
+            left++;
+        }
+        // Move `right` pointer to the previous vowel
+        while (left < right && !isVowel(s[right])) {
+            right--;
+        }
+        // Swap the vowels
+        if (left < right) {
+            char temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
+
+int main() {
+    char s1[] = "hello";
+    reverseVowels(s1);
+    printf("Reversed vowels: %s\n", s1);  // Output: "holle"
+    
+    char s2[] = "leetcode";
+    reverseVowels(s2);
+    printf("Reversed vowels: %s\n", s2);  // Output: "leotcede"
+    
+    char s3[] = "aA";
+    reverseVowels(s3);
+    printf("Reversed vowels: %s\n", s3);  // Output: "Aa"
+
+    return 0;
+}
+
+##documentation##
+
+- if there is reversing involved use 2 pointer approach (swapping)

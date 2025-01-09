@@ -1,0 +1,51 @@
+##Question
+Given an integer array nums, return true if there exists a triple of indices (i, j, k) , such that
+i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
+
+
+## my solution 1 (excides the time requirement)
+
+class Solution(object):
+    def increasingTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        n = len(nums)
+        if n < 3:
+            return False  # Not enough numbers for a triplet
+
+        for i in range(n - 2):  # Loop through the list
+            for j in range(i + 1, n - 1):  # Ensure j > i
+                for k in range(j + 1, n):  # Ensure k > j
+                    if nums[i] < nums[j] < nums[k]:  # Check triplet condition
+                        return True
+
+        return False  # No valid triplet found
+
+
+## my solution 2
+
+class Solution(object):
+    def increasingTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        first = float('inf')
+        second = float('inf')
+
+        for num in nums:
+            if num <= first:
+                first = num  # Update the smallest number
+            elif num <= second:
+                second = num  # Update the second smallest number
+            else:
+                return True  # A number greater than both first and second is found
+
+        return False
+
+
+## optimised solution
+
+

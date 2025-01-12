@@ -120,3 +120,19 @@ Example: 5 / 2 = 2.5
 
 // (Floor Division): Performs integer division and returns the largest whole number less than or equal to the result (removes the decimal part).
 Example: 5 // 2 = 2
+
+// ALLOCATE MEMORY FOR THE RESULT AND COPY THE PREFIC
+    char* result = (char*)malloc((gcd_length + 1) * sizeof(char));
+    strncpy(result, str1, gcd_length);
+    result[gcd_length] = '\0'; // Null-terminate the string
+
+char* result = (char*)malloc((gcd_length + 1) * sizeof(char));
+
+Allocates memory for the string result.
+The size is gcd_length + 1 to include space for the null terminator (\0).
+strncpy(result, str1, gcd_length);
+
+Copies the first gcd_length characters from str1 into result.
+result[gcd_length] = '\0';
+
+Adds the null terminator (\0) at the end to mark the end of the string.

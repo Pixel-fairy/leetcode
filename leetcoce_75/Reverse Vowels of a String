@@ -110,3 +110,20 @@ int main() {
 ##documentation##
 
 - if there is reversing involved use 2 pointer approach (swapping)
+
+PYTHON DOES NOT HAVE THE !== OPERATOR. IT USES != FOR "not equal."
+
+ YOU CANNOT DO s[right] != vowels
+
+REASON:
+vowels is a set, and s[right] is a single character.
+The != operator checks if two entire objects are not equal, not if an element belongs to a set.
+
+if s[right] != vowels:  # This compares the character to the entire set (invalid logic).
+
+CORRECT APPROACH:
+To check if a character is not in a set, use s[right] not in vowels.
+This checks if the character at s[right] is not one of the vowels in the set.
+
+if s[right] not in vowels:  # This checks if the character is not in the set of vowels.
+

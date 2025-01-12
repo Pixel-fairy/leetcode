@@ -99,3 +99,24 @@ int main() {
 }
 
 ##documentation##
+
+if len1 % l or len2 % l:
+    return False
+
+len1 % l: Checks if len1 is not divisible by l (remainder is not 0).
+len2 % l: Checks if len2 is not divisible by l (remainder is not 0).
+or: If either condition is True, the whole statement is True.
+
+
+for l in range(min(len1, len2), 0, -1):
+
+Starts from the smaller of len1 and len2.
+Counts down to 1 (since 0 is excluded).
+For each value of l, the loop runs.
+
+DIFFERENCE BETWEEN / AND // IN PYTHON:
+/ (Division): Performs floating-point division and always returns a decimal (even if the result is a whole number).
+Example: 5 / 2 = 2.5
+
+// (Floor Division): Performs integer division and returns the largest whole number less than or equal to the result (removes the decimal part).
+Example: 5 // 2 = 2

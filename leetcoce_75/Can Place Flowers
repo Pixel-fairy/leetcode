@@ -64,7 +64,7 @@ class Solution(object):
             else:
                 empty +=1
                 
-        n-= (empty) // 2 
+        n-= (empty) // 2  # we removed the added 1 in the loop (empty+=1 is flowerbed[0]==0)
         # for the end corner case for array like [ 1, 0 , 1 , 0 , 0 ]
         return n<=0
 
@@ -93,3 +93,5 @@ bool canPlaceFlowers(int* flowerbed, int flowerbedSize, int n) {
 
 
 ##documentation##
+n-=int((empty-1) / 2) 
+Without int(), a fractional result (like 1.5) would cause errors when updating n.

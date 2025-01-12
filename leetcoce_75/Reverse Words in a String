@@ -159,3 +159,7 @@ print(s[::2])  # Output: "ace" (every second character)
 s[:3] means slice the string from the beginning (index 0) to index 3, but not including index 3.
 s = "abcdef"
 print(s[:3])  # Output: "abc"
+
+s[2:] means slice the string starting from index 2 to the end of the string.
+s = "abcdef"
+print(s[2:])  # Output: "cdef"

@@ -72,16 +72,12 @@ void reverseVowels(char *s) {
     int left = 0, right = strlen(s) - 1;
     
     while (left < right) {
-        // Move `left` pointer to the next vowel
-        while (left < right && !isVowel(s[left])) {
-            left++;
-        }
-        // Move `right` pointer to the previous vowel
-        while (left < right && !isVowel(s[right])) {
-            right--;
-        }
-        // Swap the vowels
-        if (left < right) {
+        if (!isVowel(s[left])) {
+            left++;  // Move `left` pointer to the next vowel
+        } else if (!isVowel(s[right])) {
+            right--;  // Move `right` pointer to the previous vowel
+        } else {
+            // Swap the vowels
             char temp = s[left];
             s[left] = s[right];
             s[right] = temp;
@@ -106,6 +102,7 @@ int main() {
 
     return 0;
 }
+
 
 ##documentation##
 

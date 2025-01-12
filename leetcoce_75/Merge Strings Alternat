@@ -1,7 +1,7 @@
 ##Question
-You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. 
+If a string is longer than the other, append the additional letters onto the end of the merged string.
 Return the merged string.
-
 
 ##my solution
 
@@ -88,4 +88,50 @@ int main() {
 
 ##documentation##
 
+DIFFERENCE BETWEEN APPEND AND JOIN IN PYTHON:
 
+append: Adds an element to the end of a list.
+Example: lst.append(5) → Adds 5 to the list lst.
+
+join: Combines elements of an iterable (e.g., list) into a string, separated by a specified string.
+Example: ", ".join(['a', 'b']) → Returns 'a, b'.
+
+DIFFERENCE BETWEEN RES[] and RES"":
+
+res[]: Refers to a list, used to store multiple elements (e.g., res = [] initializes an empty list).
+res"": Refers to a string, used to store text or characters (e.g., res = "" initializes an empty string).
+
+DIFFERENCE IN MANIPULATION BETWEEN RES[] and RES"":
+res[] (List): You can add, remove, or modify multiple elements.
+Example: res.append(5) adds 5 to the list.
+Lists are mutable (can be changed).
+
+res"" (String): You can concatenate or modify the text, but strings are immutable (a new string is created when modified).
+Example: res += "hello" creates a new string with "hello".
+
+
+STRINGS IN PYTHON ARE IMMUTABLE, WHICH MEANS YOU CANNOT DIRECTLY CHANGE A STRING'S CONTENTS. INSTEAD, ANY "MODIFICATION" CREATES A NEW STRING
+For example:
+res = "hello"
+res[1] = "i"  # This will raise an error because strings cannot be changed in place.
+
+
+If you want to change "hello" to "hillo", you need to create a new string:
+res = "hello"
+res = res[:1] + "i" + res[2:]  # Output: "hillo"
+
+Key Point:
+You cannot modify strings in place, but you can create a new string based on the old one.
+
+
+LISTS:
+Can store any data type: numbers, letters, strings, or even other lists.
+Example: res = [1, 'a', "hello", 3.14] → Valid.
+
+STRINGS:
+Can only store text (characters): But numbers can be included as part of the text.
+Example: res = "123abc" → Valid, but the numbers are treated as characters, not as numeric values.
+
+KEY DIFFERENCE:
+Lists can store mixed types of data.
+Strings are purely sequences of characters.

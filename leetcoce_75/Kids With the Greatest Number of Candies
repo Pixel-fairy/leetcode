@@ -70,3 +70,22 @@ int main() {
 
 
 ##documentation##
+DIFFERENCE BETWEEN for curnum in candies AND 
+
+for curnum in candies:
+Iterates over the values in the candies list directly.
+Use this when you only need to work with the elements themselves.
+
+example
+candies = [2, 3, 5]
+for curnum in candies:
+    print(curnum)  # Output: 2, 3, 5
+
+for curnum in range(len(candies)):
+Iterates over the indices of the candies list.
+Use this when you need both the index and the corresponding value.
+
+example
+candies = [2, 3, 5]
+for curnum in range(len(candies)):
+    print(candies[curnum])  # Output: 2, 3, 5

@@ -1,0 +1,56 @@
+##Question
+Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+
+A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without
+disturbing the relative positions of the remaining characters. 
+(i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+
+## my solution
+
+class Solution(object):
+    def isSubsequence(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        i, j = 0, 0  # Pointers for 't' and 's'
+
+        # Traverse 't' while matching characters from 's'
+        while i < len(t) and j < len(s):
+            if s[j] == t[i]:
+                j += 1  # Move to the next character in 's'
+            i += 1  # Always move to the next character in 't'
+
+        # If we have traversed all characters of 's', it is a subsequence
+        return j == len(s)
+
+
+## optimized solution
+
+class Solution(object):
+    def isSubsequence(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        if (len(s) == 0):
+            return True
+        if (len(t) == 0):
+            return False
+        else:
+            index = 0
+            l = len(s)
+            c = s[index]
+            for i in range(len(t)):
+                if t[i] == c:
+                    index += 1
+                    if (index >= l): 
+                        return True 
+                    else:    
+                        c = s[index]
+            return False
+
+
+## solution in c

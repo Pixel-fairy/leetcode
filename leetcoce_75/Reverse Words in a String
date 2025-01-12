@@ -37,3 +37,125 @@ class Solution(object):
 
 ## solution in c
 
+#include <stdio.h>
+#include <string.h>
+
+// Function to reverse words in a string
+void reverseWords(char *s) {
+    char *token = strtok(s, " "); // Split the string into words
+    char *words[100];            // Store words in an array
+    int count = 0;
+
+    // Store each word in the array
+    while (token != NULL) {
+        words[count++] = token;
+        token = strtok(NULL, " ");
+    }
+
+    // Print words in reverse order
+    for (int i = count - 1; i >= 0; i--) {
+        printf("%s", words[i]);
+        if (i > 0) {
+            printf(" "); // Add a space between words
+        }
+    }
+    printf("\n");
+}
+
+int main() {
+    char str[] = "Hello world from C";
+    reverseWords(str); // Output: "C from world Hello"
+
+    return 0;
+}
+
+##documention
+
+while (token != NULL) {
+    words[count++] = token;
+    token = strtok(NULL, " ");
+}
+
+EXPLAINATION
+token = strtok(NULL, " "):
+Retrieves the next token (word) from the string.
+If there are no more words, strtok returns NULL, causing the loop to end.
+
+
+char *token = strtok(s, " "); EXPLANATION
+
+Purpose: Splits the string s into tokens (substrings) using the delimiter " ".
+s: The string to be split.
+" ": The delimiter used to separate the tokens (in this case, spaces).
+token: Points to the first token (word) in the string s.
+
+token = strtok(NULL, " "); EXPLANATION
+
+Purpose: Continues splitting the string. It gets the next token in the sequence.
+NULL: Indicates that the function should continue from where it left off in the previous call.
+" ": The same delimiter used earlier.
+Result: Points to the next token (word) or NULL if no more tokens are found.
+
+SPLIT()
+the split() method splits a string into a list of strings based on spaces by default.
+
+Example:
+s = "  Hello   world  "
+words = s.split()
+print(words)  # Output: ['Hello', 'world']
+
+s = "apple,orange,banana,grape"
+words = s.split(",")  # Splitting based on commas
+print(words)  # Output: ['apple', 'orange', 'banana', 'grape']
+
+It removes extra spaces automatically.
+Each word becomes an element in the list.
+
+REVERSE()
+reverse(): Modifies the order of elements in place in an existing list; it does not create a new list.
+
+Example
+# Using split
+s = "Hello world"
+words = s.split()
+print(words)  # Output: ['Hello', 'world']
+
+# Using reverse
+words.reverse()
+print(words)  # Output: ['world', 'Hello']
+
+-reverse() does not work on strings because strings are immutable in Python. It works only on lists.
+If you try to call reverse() on a string, it will raise an error
+
+TO REVERSE A STRING, YOU CAN USE SLICING:
+s = "Hello world"
+reversed_s = s[::-1]
+print(reversed_s)  # Output: "dlrow olleH"
+
+How it works:
+:: Means take all characters.
+-1: Means move from right to left (reverse direction).
+
+[::-2] MEANS:
+Take all characters of the string (:), but move backwards (-) skipping every second character (2).
+
+Example:
+s = "abcdef"
+result = s[::-2]
+print(result)  # Output: "fdb"
+
+IN PYTHON STRINGS:
+: is used for slicing, to extract a portion of a string or list.
+Example: s[1:5] extracts characters from index 1 to 4 (not including index 5).
+
+:: is also used for slicing, but it allows you to specify the step.
+Example: s[::2] extracts every second character from the string.
+
+Example:
+s = "abcdef"
+print(s[1:5])  # Output: "bcde" (characters from index 1 to 4)
+print(s[::2])  # Output: "ace" (every second character)
+
+s[:3] means slice the string from the beginning (index 0) to index 3, but not including index 3.
+s = "abcdef"
+print(s[:3])  # Output: "abc"

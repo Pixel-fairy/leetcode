@@ -7,6 +7,35 @@ Input: height = [1,8,6,2,5,4,8,3,7]
 Output: 49
 Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
 
+## first iteration of the solution 
+
+class Solution(object):
+    # 1 2 4 3   5 
+    # 5 1 2 3 4
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        right,left=0,len(height)
+        
+        while right<left:
+            if(height[right]>height[left]):
+                left-=1
+            elif(height[right]<height[left]):
+                right+=1
+
+        # THIS IS AN INFINITY LOOP
+
+        length=max(right,left)
+        width=abs((left-right)+1) 
+
+        # WIDTH IS THE THE GAP BETWEEN THE BORDERS , SO JUST abs(left-right) 
+         ALSO LEFT>RIGHT ALWAYS SO JUST (left-right)
+
+        return length*width
+
+
 ## my solution
 
 class Solution(object):

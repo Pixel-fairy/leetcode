@@ -35,3 +35,9 @@ class Solution(object):
 
 
 ## optimized solution
+
+## solution in c
+
+##documentation
+- if there is any pattern where we have to compare from start and from the end == 2 pointers method
+and [while right<left] condition

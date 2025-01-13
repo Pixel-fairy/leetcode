@@ -63,9 +63,95 @@ class Solution(object):
         return max_area
 
 
+## Brute force
+
+class Solution(object):
+    def maxArea(self, height):
+        res=0
+        
+        for l in range(len(height)):
+            for r in range(l+1 , len(height)):
+                area = (r-l)*min(height[l],height[r])
+                res = max(res , area)
+        return
+    # try out all the combinations
+
+
 ## optimized solution
 
+class Solution(object):
+    def maxArea(self, height):
+      
+      pointerR=len(height)-1
+      pointerL=0
+
+      MaxArea=0
+      maxH = max(height)
+
+      while pointerL<pointerR:
+        if  height[pointerL]>height[pointerR]:
+            Q = height[pointerR] *(pointerR-pointerL)
+            MaxArea= Q if Q>MaxArea else MaxArea
+            pointerR -=1
+        else:
+            Q= height[pointerL]*(pointerR-pointerL)
+            MaxArea= Q if Q>MaxArea else MaxArea
+            pointerL +=1
+        if MaxArea >= maxH*(pointerR-pointerL):break
+
+      return MaxArea
+
+
 ## solution in c
+
+#include <stdio.h>
+
+int maxArea(int* height, int heightSize) {
+    int pointerR = heightSize - 1;
+    int pointerL = 0;
+
+    int MaxArea = 0;
+    int maxH = 0;
+
+    // Find the maximum height in the array
+    for (int i = 0; i < heightSize; i++) {
+        if (height[i] > maxH) {
+            maxH = height[i];
+        }
+    }
+
+    // Two-pointer approach to calculate max area
+    while (pointerL < pointerR) {
+        int Q;
+        if (height[pointerL] > height[pointerR]) {
+            Q = height[pointerR] * (pointerR - pointerL);
+            MaxArea = (Q > MaxArea) ? Q : MaxArea;
+            pointerR--;
+        } else {
+            Q = height[pointerL] * (pointerR - pointerL);
+            MaxArea = (Q > MaxArea) ? Q : MaxArea;
+            pointerL++;
+        }
+
+        // Break if no larger area is possible
+        if (MaxArea >= maxH * (pointerR - pointerL)) {
+            break;
+        }
+    }
+
+    return MaxArea;
+}
+
+// Example usage
+int main() {
+    int height[] = {1, 2, 4, 3, 5};
+    int heightSize = sizeof(height) / sizeof(height[0]);
+    
+    int result = maxArea(height, heightSize);
+    printf("Maximum Area: %d\n", result);
+
+    return 0;
+}
 
 ##documentation
 - if there is any pattern where we have to compare from start and from the end == 2 pointers method

@@ -1,0 +1,89 @@
+## Question
+Table: Students
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| student_id    | int     |
+| student_name  | varchar |
++---------------+---------+
+student_id is the primary key (column with unique values) for this table.
+Each row of this table contains the ID and the name of one student in the school.
+ 
+Table: Subjects
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| subject_name | varchar |
++--------------+---------+
+subject_name is the primary key (column with unique values) for this table.
+Each row of this table contains the name of one subject in the school.
+ 
+Table: Examinations
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| student_id   | int     |
+| subject_name | varchar |
++--------------+---------+
+There is no primary key (column with unique values) for this table. It may contain duplicates.
+Each student from the Students table takes every course from the Subjects table.
+Each row of this table indicates that a student with ID student_id attended the exam of subject_name.
+ 
+Write a solution to find the number of times each student attended each exam.
+Return the result table ordered by student_id and subject_name.
+
+## my solution
+class Solution(object):
+    def pivotIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        total_sum = sum(nums)  # Calculate the total sum of the array
+        left_sum = 0  # Initialize the left sum to 0
+        
+        for i in range(len(nums)):
+            # Calculate the right sum as total_sum - left_sum - nums[i]
+            right_sum = total_sum - left_sum - nums[i]
+            # Check if left_sum equals right_sum
+            if left_sum == right_sum:
+                return i
+            # Update left_sum with the current element
+            left_sum += nums[i]
+        
+        return -1  # Return -1 if no pivot index is found
+
+## documentation
+A CROSS JOIN in SQL creates a combination of every row from one table with every row from another table. It generates all possible pairings of rows from the two tables.
+
+Key Points:
+No condition is needed for the join.
+The result has rows equal to the product of the number of rows in both tables.
+
+Example:
+
+Table A:
+ID |	NAME
+1	 | Alice
+2	 | Bob
+
+Table B:
+SUBJECT |
+Math    |
+Science |
+
+CROSS JOIN Result:
+
+ID	|NAME	  |SUBJECT
+1	  |Alice	| Math
+1	  |Alice	| Science
+2  	|Bob	  | Math
+2 	|Bob	  | Science
+It’s useful when you need all combinations of rows, like matching students with all subjects.
+
+
+
+
+
+
+

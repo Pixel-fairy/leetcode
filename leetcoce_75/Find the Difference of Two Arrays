@@ -1,0 +1,86 @@
+## Question
+Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
+
+answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+Note that the integers in the lists may be returned in any order.
+
+Example 1:
+
+Input: nums1 = [1,2,3,3], nums2 = [1,1,2,2]
+Output: [[3],[]]
+
+Explanation:
+For nums1, nums1[2] and nums1[3] are not present in nums2. Since nums1[2] == nums1[3], their value is only included once and answer[0] = [3].
+Every integer in nums2 is present in nums1. Therefore, answer[1] = [].
+
+
+## first iteration
+
+class Solution(object):
+    def findDifference(self, nums1, nums2):
+        num1=[]
+        num2=[]
+        result=[]
+      
+        
+        for i in nums1:
+            for j in nums2:
+                if(i==j):
+                    continue
+                elif(i not in num1):
+                    num1.append(i)
+                    
+        for j in nums2:
+            for i in num1:
+                if(j==i):
+                    continue
+                elif(j not in num2):
+                    num2.append(j)
+        result.append(num1)
+        result.append(num2)
+        return result
+
+## my solution 
+class Solution(object):
+    def findDifference(self, nums1, nums2):
+        num1 = []
+        num2 = []
+        result = []
+
+        # Check nums1 against nums2
+        for i in nums1:
+            if i not in nums2 and i not in num1:  # Ensure no duplicates in num1
+                num1.append(i)
+
+        # Check nums2 against num1
+        for j in nums2:
+            if j not in nums1 and j not in num2:  # Ensure no duplicates in num2
+                num2.append(j)
+
+        result.append(num1)
+        result.append(num2)
+        return result
+
+ ## optimized solution
+class Solution(object):
+    def findDifference(self, nums1, nums2):
+        num1 = []
+        num2 = []
+        result = []
+
+        # Find elements in nums1 not in nums2
+        for i in nums1:
+            if i not in nums2 and i not in num1:  # Avoid duplicates
+                num1.append(i)
+
+        # Find elements in nums2 not in nums1
+        for j in nums2:
+            if j not in nums1 and j not in num2:  # Avoid duplicates
+                num2.append(j)
+
+        result.append(num1)
+        result.append(num2)
+        return result
+
+## Documentation

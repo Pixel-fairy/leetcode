@@ -58,8 +58,13 @@ class Solution:
                 # No collision, add the asteroid to the stack
                 stack.append(asteroid)
 
+        return stack
+     
+    Example
+    input=[5,10,-5]
+
+
 ## Documentation
 
 
-        return stack
-
+       

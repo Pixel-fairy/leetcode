@@ -1,0 +1,40 @@
+# Question
+
+#my solution 
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+        for ast in asteroids:
+            while stack and stack[-1] > 0 and ast < 0:
+                last = stack.pop()
+                if last > -ast:
+                    stack.append(last)
+                    break
+                elif last == -ast:
+                    break
+            else:
+                stack.append(ast)
+        return stack
+
+## optimized solution 
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []  # To store asteroids that have not been destroyed
+
+        for asteroid in asteroids:
+            # Check for collisions only when there's a potential conflict
+            while stack and asteroid < 0 < stack[-1]:
+                if abs(asteroid) > stack[-1]:
+                    # Current asteroid destroys the top of the stack
+                    stack.pop()
+                    continue  # Check again for further collisions
+                elif abs(asteroid) == stack[-1]:
+                    # Both asteroids destroy each other
+                    stack.pop()
+                break  # No further collision is possible, stop the loop
+            else:
+                # No collision, add the asteroid to the stack
+                stack.append(asteroid)
+
+        return stack
+

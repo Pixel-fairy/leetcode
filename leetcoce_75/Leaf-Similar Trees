@@ -1,0 +1,47 @@
+## Question
+Consider all the leaves of a binary tree, from left to right order, the values of those leaves form a leaf value sequence.
+Two binary trees are considered leaf-similar if their leaf value sequence is the same.
+Return true if and only if the two given trees with head nodes root1 and root2 are leaf-similar.
+
+## my solution / optimised solution
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        leaf1 = []
+        leaf2 = []
+        def getLeaf(root, result):
+            if root.left is None and root.right is None:
+                result.append(root.val)
+                return
+            if root.left:
+                getLeaf(root.left, result)
+            if root.right:
+                getLeaf(root.right, result)
+            return 
+            
+        getLeaf(root1, leaf1)
+        getLeaf(root2, leaf2)
+        return leaf1 == leaf2
+
+## Documentation
+
+-There's no need for ELIF because both IF ROOT.LEFT: and IF ROOT.RIGHT: are independent conditions.
+
+A node can have both LEFT and RIGHT children, so we need to check both.
+Using ELIF would mean that IF ROOOT.LEFT exists, it would call GETLEAF(ROOT.LEFT,RESULT), but it would skip checking ROOT.RIGHT.
+To ensure both left and right children are processed, separate IF STATEMENTS are used instead of ELIF.
+
+-in IF ROOT.LEFT:, we pass ROOT.LEFT to GETLEFT(ROOT.LEFT, RESULT), meaning we recursively call GETLEAF on the LEFT CHILD only if it exists.
+If we pass ROOT, we would keep processing the same node, causing an infinite loop. We pass ROOT.LEFT and ROOT.RIGHT to move down the tree and reach the LEAF nodes.
+
+
+
+
+
+

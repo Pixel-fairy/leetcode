@@ -81,7 +81,14 @@ class Solution:
         dfs(root, 0)
         return self.count
 
-## difference between the 2
+## Documentation
+DIFFERENCE BETWEEN THE 2 CODES:
 -First Code: Uses return values for counting paths.
 -Second Code: Uses a class variable (self.count) to store results.
 -Both Work, but the second is more readable and avoids extra return statements.
+
+
+ONLY WHEN BACKTRACKING (MOVING UP) DO WE REMOVE THE CURRENT_SUM BECUASE:
+-It belongs to the completed path and is no longer useful for other branches.
+-Other nodes will recompute and add their own sums if needed.
+🔹 Leaf nodes touch it last, but backtracking happens for all nodes.

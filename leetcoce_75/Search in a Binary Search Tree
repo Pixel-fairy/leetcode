@@ -1,0 +1,51 @@
+## my solutioin 
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+from typing import Optional
+
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root:
+            return None  # If root is None, return None
+
+        if root.val == val:
+            return root  # Return the subtree rooted at the found node
+        
+        if val < root.val:
+            return self.searchBST(root.left, val)  # Search in left subtree
+        
+        return self.searchBST(root.right, val)  # Search in right subtree
+
+## first iteration 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        result=""
+
+        def answering(root,value):
+            if not root:
+                return result.append(None)
+
+            if root.val == value:
+                result.append(root.val)
+                result.append(root.left.val )
+                result.append(root.right.val)
+                return result
+            if root.left:
+                answering(root.left,value)
+            if root.right:
+                answering(root.right,value)
+
+            answering(root,value)
+            return result

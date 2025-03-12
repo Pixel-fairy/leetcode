@@ -1,4 +1,4 @@
-mysolution/optmisedsolution
+my solution/optmised solution
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
         return reduce(xor, nums)

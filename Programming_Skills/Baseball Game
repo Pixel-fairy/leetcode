@@ -1,0 +1,17 @@
+my solution
+class Solution:
+    def calPoints(self, operations: List[str]) -> int:
+        ans=[]
+        for i in operations:
+            if i=='+':
+                ans.append(ans[-1]+ans[-2])
+                continue
+            if i=='D':
+                ans.append(ans[-1]*2)
+                continue
+            if i=='C':
+                ans.remove(ans[-1])
+                continue
+            else:
+                ans.append(int(i))
+        return sum(ans)

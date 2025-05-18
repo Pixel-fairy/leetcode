@@ -1,0 +1,20 @@
+my solution
+class Solution:
+    def diagonalSum(self, mat: List[List[int]]) -> int:
+        if len(mat)==1:
+            return mat[0][0]
+        if len(mat)==2:
+            return(mat[0][0]+mat[0][1]+mat[1][1]+mat[1][0])
+        if len(mat)==3:
+            return(mat[0][0]+mat[0][2]+mat[1][1]+mat[2][0]+mat[2][2])
+        n=len(mat)
+        sum1=0
+        for i in range(n):
+            sum1+=mat[i][i]
+            sum1+=mat[i][n-1-i]
+        if n%2==1:
+            sum1-=mat[n//2][n//2]
+        
+        return sum1
+
+        

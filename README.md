@@ -1,2 +1,2 @@
 # leetcode
-solution with documentation 
+solution with documentation

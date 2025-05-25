@@ -6,3 +6,4 @@ class Solution:
         if gap == 0: return True
         s = set(num - m for num in arr)
         return len(s) == len(arr) and all(diff % gap == 0 for diff in s)
+ 

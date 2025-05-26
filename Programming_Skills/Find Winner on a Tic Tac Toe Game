@@ -1,6 +1,6 @@
 my solution
 class Solution:
-    def tictactoe(self, moves: List[List[int]]) -> str:
+    def tictactoe(self, moves: List[List[int]]) -> str: 
         n = 3
         rows, cols = [0] * n, [0] * n
         diag1 = diag2 = 0
